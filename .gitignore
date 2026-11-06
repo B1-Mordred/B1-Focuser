@@ -1,0 +1,13 @@
+/build/
+*.bin
+*.elf
+*.map
+*.log
+*.zip
+.env
+.env.*
+!.env.example
+.vscode/
+.idea/
+.DS_Store
+__pycache__/

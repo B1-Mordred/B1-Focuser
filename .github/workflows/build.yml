@@ -1,0 +1,26 @@
+name: Compile firmware
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: arduino/setup-arduino-cli@v2
+        with:
+          version: "1.2.2"
+      - name: Install pinned dependencies
+        run: |
+          arduino-cli core update-index --additional-urls https://espressif.github.io/arduino-esp32/package_esp32_index.json
+          arduino-cli core install esp32:esp32@3.3.12 --additional-urls https://espressif.github.io/arduino-esp32/package_esp32_index.json
+          arduino-cli lib install "AccelStepper@1.64"
+      - name: Compile
+        run: ./scripts/build.sh
+      - name: Test manual switch logic
+        run: |
+          g++ -std=c++11 -Wall -Wextra -Werror tests/manual_switch_test.cpp -o build/manual-switch-test
+          ./build/manual-switch-test
