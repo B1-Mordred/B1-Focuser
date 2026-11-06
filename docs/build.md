@@ -51,7 +51,7 @@ For a C3 stuck outside download mode, hold BOOT, tap RESET, release BOOT, then r
 
 1. Add the Espressif package-index URL above in Additional Boards Manager URLs.
 2. Install **esp32 by Espressif Systems**, version 3.3.12, and **AccelStepper**, version 1.64.
-3. Open `firmware/sv48p-esp32c3-moonlite-focuser/sv48p-esp32c3-moonlite-focuser.ino`.
+3. Open `firmware/B1-Focuser/B1-Focuser.ino`.
 4. Select **ESP32C3 Dev Module**, **USB CDC On Boot: Enabled**, and the correct port.
 5. Verify, then Upload.
 

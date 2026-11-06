@@ -11,7 +11,7 @@ git status
 git add .
 git diff --cached --stat
 git diff --cached
-git commit -m "Package SV48P ESP32-C3 focuser firmware and documentation"
+git commit -m "Update B1-Focuser firmware and documentation"
 ```
 
 Push committed changes to the existing repository:

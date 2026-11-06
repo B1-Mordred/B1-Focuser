@@ -1,5 +1,5 @@
 /*
-  SVBONY SV48P ESP32-C3 MoonLite focuser
+  B1-Focuser: SVBONY SV48P ESP32-C3 MoonLite focuser
 
   Based on the protocol behavior of fehlfarbe/arduino-motorfocus:
   https://github.com/fehlfarbe/arduino-motorfocus

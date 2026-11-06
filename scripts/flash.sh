@@ -9,4 +9,4 @@ project_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 arduino-cli upload --port "$1" \
   --fqbn esp32:esp32:esp32c3:CDCOnBoot=cdc \
   --input-dir "$project_root/build" \
-  "$project_root/firmware/sv48p-esp32c3-moonlite-focuser"
+  "$project_root/firmware/B1-Focuser"

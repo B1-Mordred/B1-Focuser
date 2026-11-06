@@ -1,4 +1,4 @@
-# SV48P ESP32-C3 focuser
+# B1-Focuser
 
 USB motorized focuser for an **SVBONY SV48P**, using an **ESP32-C3**, **28BYJ-48 5V motor**, and **ULN2003 driver**. Speaks the MoonLite serial protocol for INDI, Ekos, and StellarMate.
 
@@ -18,8 +18,9 @@ USB motorized focuser for an **SVBONY SV48P**, using an **ESP32-C3**, **28BYJ-48
 ## Repository layout
 
 ```text
-firmware/sv48p-esp32c3-moonlite-focuser/
-  sv48p-esp32c3-moonlite-focuser.ino
+firmware/B1-Focuser/
+  B1-Focuser.ino
+  ManualSwitch.h
 docs/
   hardware.md           Parts, wiring, power, mounting
   build.md              Arduino CLI and IDE instructions

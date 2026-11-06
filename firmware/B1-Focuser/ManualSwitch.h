@@ -1,7 +1,7 @@
 #pragma once
 #include <stdint.h>
 
-// Input bits: 1 = IN grounded, 2 = OUT grounded, 0 = centre.
+// B1-Focuser input bits: 1 = IN grounded, 2 = OUT grounded, 0 = centre.
 // Starting requires a stable input; leaving a direction stops immediately.
 class ManualSwitch
 {

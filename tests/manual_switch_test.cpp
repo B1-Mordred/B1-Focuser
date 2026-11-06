@@ -1,4 +1,4 @@
-#include "../firmware/sv48p-esp32c3-moonlite-focuser/ManualSwitch.h"
+#include "../firmware/B1-Focuser/ManualSwitch.h"
 #include <cassert>
 #include <iostream>
 

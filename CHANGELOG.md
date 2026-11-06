@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Renamed the project and Arduino sketch to B1-Focuser; updated build, upload, test, and documentation paths.
+
 ### 2026-11-06: manual focus switch
 
 - Enabled GPIO0/GPIO1 centre-off switch with internal pull-ups.
