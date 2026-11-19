@@ -157,7 +157,8 @@ void setStepMode(StepMode newMode)
   AccelStepper &newStepper = activeStepper();
   newStepper.setCurrentPosition(fromHalfStepUnits(currentHalfSteps, stepMode));
   targetPosition = fromHalfStepUnits(targetHalfSteps, stepMode);
-  newStepper.moveTo(targetPosition);
+  // setCurrentPosition also resets the internal motion target and velocity.
+  // Keep the converted SN target staged only; FG must explicitly start it.
   updateSpeed();
 
   if (shouldEnableOutputs)
