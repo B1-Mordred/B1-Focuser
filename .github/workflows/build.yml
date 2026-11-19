@@ -20,7 +20,5 @@ jobs:
           arduino-cli lib install "AccelStepper@1.64"
       - name: Compile
         run: ./scripts/build.sh
-      - name: Test manual switch logic
-        run: |
-          g++ -std=c++11 -Wall -Wextra -Werror tests/manual_switch_test.cpp -o build/manual-switch-test
-          ./build/manual-switch-test
+      - name: Test firmware motion and manual switch logic (host only)
+        run: bash scripts/test-host.sh

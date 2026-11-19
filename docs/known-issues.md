@@ -1,15 +1,15 @@
 # Known issues and unsupported features
 
-This package preserves the existing firmware. The following are source-review findings, not newly measured hardware failures.
+The following limitations are source-review findings, not newly measured hardware failures.
 
 ## Step-mode switching
 
 - Separate full-step and half-step AccelStepper objects do not preserve electrical phase through the current coordinate conversion. Switching or syncing may cause a small phase discontinuity on subsequent motion.
 - Odd half-step positions round when converted to full steps; repeated toggling can change coordinates.
-- Switching mode after staging a target with SN can start movement without a subsequent FG because the mode-switch routine calls moveTo.
+- Fixed in the 2026-11-19 patch: switching mode after SN now converts only the staged target; the new stepper remains idle until FG. PH and the manual switch remain explicit independent movement controls.
 - A mode change while moving is silently ignored. A driver may display its requested state without confirming the actual mode.
 
-Use a fixed half-step mode for normal operation. Phase-preserving motion and robust mode-change semantics remain follow-up work.
+Use a fixed half-step mode for normal operation. Phase-preserving motion remains follow-up work. The patch does not remove coil interruption during switching or coordinate rounding.
 
 ## Limits and persistence
 

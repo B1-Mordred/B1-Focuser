@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-19 — staged-target safety fix
+
+- Remove motion arming from idle full/half-step conversion. SN stays staged until FG.
+- Add host regression coverage using the actual sketch and AccelStepper 1.64; run it in CI.
+- Preserve moving-mode rejection, manual priority, numeric conversion and current-position persistence.
+- No hardware validation, phase-continuity improvement or mechanical-accuracy claim.
+
 ## Unreleased
 
 - Renamed the project and Arduino sketch to B1-Focuser; updated build, upload, test, and documentation paths.

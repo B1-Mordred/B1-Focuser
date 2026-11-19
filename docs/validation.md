@@ -1,5 +1,43 @@
 # Validation record
 
+## Step-mode staged-target fix (2026-11-19)
+
+Base reviewed: `414f930ee94bca4ea73fa7062be9546e0dfee317`.
+The only firmware behavior change removes `newStepper.moveTo(targetPosition)`
+from `setStepMode()`. AccelStepper's `setCurrentPosition()` resets its internal
+target and velocity. The separately converted SN target remains available to GN
+and FG. Mode changes during a move (including FQ deceleration) remain ignored;
+clients must read GH. SN during a move stages a future target without retargeting
+the active move. PH and manual input intentionally remain movement initiators.
+Manual takeover/release continues to replace the staged target with the manual
+motion/current position, and remote writes remain blocked while engaged.
+
+Run `bash scripts/test-host.sh` after installing AccelStepper 1.64, or set
+`ACCELSTEPPER_SRC` to its `src` directory. The runner checks source hashes and
+compiles the actual sketch plus the real library with `-Wall -Wextra -Werror`.
+Arduino time, serial, GPIO and Preferences are host adapters; they do not access
+hardware. The tests exercise framed commands through `readSerialCommands()` and
+`loop()`, rather than a duplicate implementation of the motion logic.
+
+Host regressions passed: SN → SF/SH → idle → FG in both directions, odd/even
+positions, outputs enabled/disabled, same/repeated mode commands, GN/GI replies,
+SN during an active move, mode rejection during movement/abort, manual takeover
+from staged/active motion and release, SP sync, PH, current-position/mode saves
+and simulated setup after restart. The original firmware fails the staged-target
+idle assertion with the same test harness. Existing manual-switch tests pass.
+
+Persistence still records the converted **current** position and mode, never the
+staged target; the patch preserves upward rounding of odd half steps. Preferences
+writes are simulated, so flash endurance and interrupted writes are untested.
+Separate writes remain non-atomic. Counter rounding can accumulate on toggles.
+Switching disables coil outputs and does not preserve electrical phase; a rotor
+may settle or shift even without a queued software move. Host counters establish
+neither electrical phase continuity nor mechanical positioning accuracy, backlash,
+slip, missed-step behavior or safe travel. Fixed half-step operation remains
+recommended until separately authorized hardware validation.
+
+No device connection, upload or real motor movement was performed for this patch.
+
 ## Manual switch update (2026-11-06)
 
 - Host tests passed for startup with a held switch, debounce, release, reversal, serial-abort inhibition, both-input fault, remote idle, and timer wrap.
